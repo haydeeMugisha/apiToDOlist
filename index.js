@@ -29,6 +29,9 @@ app.use('/files', fileRouter);
 import {router as userRouter} from './router/user.router.js';
 app.use('/users', userRouter);
 
+import {router as todoRouter} from './router/todo.router.js';
+app.use('/todos', todoRouter);
+
 import {router as authRouter} from './router/auth.router.js';
 import logger from './config/log.config.js';
 app.use('/auth', authRouter);
