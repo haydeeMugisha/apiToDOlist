@@ -5,13 +5,19 @@ import logger from "../config/log.config.js";
 
 const router = express.Router();
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', async (req, res) => {
     logger.info('Registering user...', req.body.email);
     const user = req.body;
-    await authService.register(user);
-    logger.info('User has registered successfully', req.body.email);
-    res.send('Register');
-})
+    try {
+        await authService.register(user);
+        logger.info('User has registered successfully', req.body.email);
+        res.status(201).send('Registration successful');
+    } catch (error) {
+        logger.error('Registration failed', error);
+        res.status(500).send('Registration failed');
+    }
+});
+
 
 router.post('/login',async (req, res) => {
     const {email, password} = req.body;
