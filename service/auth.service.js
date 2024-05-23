@@ -1,7 +1,6 @@
 import { User } from "../model/user.model.js";
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
-
 import config from "../config/auth.config.js";
 import logger from "../config/log.config.js";
 

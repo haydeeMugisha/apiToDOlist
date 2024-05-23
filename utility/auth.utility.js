@@ -5,9 +5,8 @@ import logger from "../config/log.config.js";
 
 const verifyToken = (req, res, next) => {
 
-    return next()
-
-    let token = req.session.token;
+   // let token = req.session.token;
+   let token = req.headers["authorization"];
 
     if (!token) {
         logger.error('No token provided!');
@@ -16,8 +15,12 @@ const verifyToken = (req, res, next) => {
         });
     }
 
+    if (token.startsWith("Bearer ")) {
+        token = token.slice(7, token.length).trimLeft();
+      }
+
     jwt.verify(token,
-        config.secret,
+    process.env.JWT_SECRET_KEY,
         (err, decoded) => {
             if (err) {
                 logger.error('Unauthorized!');
