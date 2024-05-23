@@ -2,41 +2,28 @@ import sequelize from "../config/database.config.js";
 import { DataTypes } from "sequelize";
 
 const User = sequelize.define("User", {
-    firstname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            msg: 'First Name is required'
-        },
+  firstname: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  lastname: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
     },
-    lastname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            msg: 'Last Name is required'
-        },
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true
-        },
-        isEmail: {
-            msg: 'Email is required'
-        },
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            msg: 'Password is required'
-        },
-    },
-},{
-    tableName: 'user'
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+}, {
+  tableName: 'user',
 });
 
-
-export {User}
+export { User };
