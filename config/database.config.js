@@ -1,4 +1,7 @@
 import {Sequelize} from "sequelize";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -12,6 +15,7 @@ const sequelize = new Sequelize(
             underscored: true,
             freezeTableName: true,
         },
+        logging: false,
     });
 
 const connectToDatabase = async () => {
