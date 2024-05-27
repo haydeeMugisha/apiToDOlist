@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '9010:9010'
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.production
   mysql-todo:
     container_name: mysql-todo
     image: mysql

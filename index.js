@@ -49,4 +49,4 @@ app.get('/test', (req, res) => {
     res.send('Test route is working');
 });
 
-app.listen(process.env.SERVER_PORT, ()=> logger.info('Server is running on port 9010'));
+app.listen(process.env.SERVER_PORT, ()=> logger.info(`Server is running on port ${process.env.SERVER_PORT}`));
