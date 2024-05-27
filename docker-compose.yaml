@@ -1,7 +1,17 @@
 version: "3.9"
 services:
-  mysql-employee:
-    container_name: mysql-employee
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '9010:9010'
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.production
+  mysql-todo:
+    container_name: mysql-todo
     image: mysql
     ports:
       - 23306:3306
@@ -9,17 +19,17 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_PASSWORD=admin
-      - MYSQL_USER=employee
-      - MYSQL_DATABASE=employee
+      - MYSQL_USER=todo
+      - MYSQL_DATABASE=todo
     volumes:
       - ./mysqlDB:/var/lib/meinsql/data
   phpmyadmin-hicoders:
     image: phpmyadmin/phpmyadmin
-    container_name: pma-employee
+    container_name: pma-todo
     depends_on:
-      - mysql-employee
+      - mysql-todo
     environment:
-      PMA_HOST: mysql-employee
+      PMA_HOST: mysql-todo
     restart: always
     ports:
       - 28080:80

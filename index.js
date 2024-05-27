@@ -1,5 +1,4 @@
 import './loadEnv.js';
-
 import express from 'express';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
@@ -29,6 +28,9 @@ app.use('/files', fileRouter);
 import {router as userRouter} from './router/user.router.js';
 app.use('/users', userRouter);
 
+import {router as todoRouter} from './router/todo.router.js';
+app.use('/todos', todoRouter);
+
 import {router as authRouter} from './router/auth.router.js';
 import logger from './config/log.config.js';
 app.use('/auth', authRouter);
@@ -43,4 +45,8 @@ process.on('uncaughtException', err => {
     process.exit(0);
 })
 
-app.listen(process.env.SERVER_PORT, ()=> logger.info('Server is running on port 9010'));
+app.get('/test', (req, res) => {
+    res.send('Test route is working');
+});
+
+app.listen(process.env.SERVER_PORT, ()=> logger.info(`Server is running on port ${process.env.SERVER_PORT}`));
