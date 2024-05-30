@@ -5,10 +5,12 @@ const getTodos = async (userId) => {
 };
 
 const createTodo = async (data, userId) => {
-  const { description, motivationalMessage } = data;
+  const { description, motivationalMessage, start_date, finish_date } = data;
   const todo = new Todo({
     description,
     motivationalMessage,
+    start_date,
+    finish_date,
     userId,
   });
   return await todo.save();
@@ -21,6 +23,8 @@ const updateTodo = async (id, data, userId) => {
   }
   todo.description = data.description || todo.description;
   todo.motivationalMessage = data.motivationalMessage || todo.motivationalMessage;
+  todo.start_date = data.start_date || todo.start_date;
+  todo.finish_date = data.finish_date || todo.finish_date;
   todo.status = data.status || todo.status;
   return await todo.save();
 };

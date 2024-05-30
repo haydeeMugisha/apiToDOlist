@@ -9,6 +9,14 @@ const Todo = sequelize.define("Todo", {
   motivationalMessage: {
     type: DataTypes.STRING,
   },
+  start_date: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  finish_date: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
   status: {
     type: DataTypes.STRING,
     defaultValue: 'active',

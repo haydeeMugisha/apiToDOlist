@@ -10,9 +10,10 @@ services:
       - NODE_ENV=production
     env_file:
       - .env.production
+    platform: linux/amd64
   mysql-todo:
     container_name: mysql-todo
-    image: mysql
+    image: mysql:8.0
     ports:
       - 23306:3306
     restart: always
@@ -23,6 +24,7 @@ services:
       - MYSQL_DATABASE=todo
     volumes:
       - ./mysqlDB:/var/lib/meinsql/data
+    platform: linux/amd64
   phpmyadmin-hicoders:
     image: phpmyadmin/phpmyadmin
     container_name: pma-todo
@@ -33,3 +35,4 @@ services:
     restart: always
     ports:
       - 28080:80
+    platform: linux/amd64
