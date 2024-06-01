@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
 import morgan from 'morgan';
-
+import './jobs/cronJob.js'
 const app = express();
 
 app.use(morgan(process.env.ACCESS_LOG_FORMAT))
